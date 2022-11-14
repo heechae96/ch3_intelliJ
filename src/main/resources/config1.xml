@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- id = 키, class = 클래스 정보 -->
+    <bean id="car" class="com.fastcampus.ch3_intelliJ.Car" scope="singleton">
+        <!-- setter를 이용하는 경우 -->
+        <!--        <property name="color" value="red"/>-->
+        <!--        <property name="oil" value="100"/>-->
+        <!--        <property name="engine" ref="engine"/>-->
+        <!--        <property name="doors">-->
+        <!--            <array value-type="com.fastcampus.ch3_intelliJ.Door">-->
+        <!--                <ref bean="door"/>-->
+        <!--                <ref bean="door"/>-->
+        <!--            </array>-->
+        <!--        </property>-->
+
+        <!-- 생성자를 이용하는 경우 -->
+        <constructor-arg name="color" value="red"/>
+        <constructor-arg name="oil" value="100"/>
+        <constructor-arg name="engine" ref="engine"/>
+        <constructor-arg name="doors">
+            <array value-type="com.fastcampus.ch3_intelliJ.Door">
+                <ref bean="door"/>
+                <ref bean="door"/>
+            </array>
+        </constructor-arg>
+    </bean>
+    <!--                                                   스코프 안쓰면 sigleton이 디폴트   -->
+    <bean id="engine" class="com.fastcampus.ch3_intelliJ.Engine"/>
+    <!--                                        prototype으로 설정하면 getBean할때마다 새로운 객체 생성  -->
+    <bean id="door" class="com.fastcampus.ch3_intelliJ.Door" scope="prototype"/>
+</beans>
