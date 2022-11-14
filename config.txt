@@ -1,2 +1,2 @@
-car = com.fastcampus.ch3_intelliJ.diCopy1.Truck
-engine = com.fastcampus.ch3_intelliJ.diCopy1.Engine
+car = com.fastcampus.ch3_intelliJ.diCopy2.Truck
+engine = com.fastcampus.ch3_intelliJ.diCopy2.Engine
