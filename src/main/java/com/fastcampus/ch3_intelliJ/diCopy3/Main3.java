@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 // @Component 애너테이션을 제거하면 자동주입이 불가능하여 null이 출력
+//  -> 외부에서 가져올 필요가 없어짐(config.txt)
 @Component
 class Car {
 }
@@ -59,17 +60,35 @@ class AppContext {
         }
     }
 
+    // 이름(id)로 찾기   [key]
+    // byName
     Object getBean(String key) {
         return map.get(key);
+    }
+
+    // 타입으로 찾기      [value]
+    //byType
+    Object getBean(Class clazz){
+        for(Object obj : map.values()){
+            if(clazz.isInstance(obj)){
+                return obj;
+            }
+        }
+        return null;
     }
 }
 
 public class Main3 {
     public static void main(String[] args) throws Exception {
         AppContext ac = new AppContext();
-        Car car = (Car) ac.getBean("car");
-        Engine engine = (Engine) ac.getBean("engine");
+        Car car = (Car) ac.getBean("car");  //byName
+        Engine engine = (Engine) ac.getBean("engine");  //byName
         System.out.println("car = " + car);
         System.out.println("engine = " + engine);
+        System.out.println("----------------------------------------------");
+        Car car2 = (Car) ac.getBean(Car.class); // byType
+        Engine engine2 = (Engine) ac.getBean(Engine.class);  // byType
+        System.out.println("car2 = " + car2);
+        System.out.println("engine2 = " + engine2);
     }
 }
